@@ -55,8 +55,9 @@ class IdeaAdapter internal constructor(
         holder.id = current.id;
         holder.ideaItemView.text = current.text
 
-        if(current.img == "null")
+        if(current.img == "null" || current.img.isNullOrEmpty())
         {
+            holder.ideaItemImage.setImageResource(0);
             val rnds = (0..11).random()
             if (rnds < 10/3)
             {

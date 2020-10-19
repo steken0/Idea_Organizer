@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         ideaViewModel.categories.observe(this, Observer { spinnerData ->
             listPopupView.setAdapter(ArrayAdapter(this, android.R.layout.simple_list_item_1, spinnerData))
-            selectionButton.text = spinnerData[0].toString()
+            selectionButton.text = "Random"
             listPopupView.setOnItemClickListener { _, _, position, _ ->
                 if(position < spinnerData.size){
                     selectionButton.text = listPopupView.listView?.getItemAtPosition(position).toString()
