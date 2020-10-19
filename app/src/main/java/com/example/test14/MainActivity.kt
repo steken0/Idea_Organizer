@@ -60,16 +60,14 @@ class MainActivity : AppCompatActivity() {
             listPopupView.setAdapter(ArrayAdapter(this, android.R.layout.simple_list_item_1, spinnerData))
             selectionButton.text = "Random"
             listPopupView.setOnItemClickListener { _, _, position, _ ->
-                if(position < spinnerData.size){
-                    selectionButton.text = listPopupView.listView?.getItemAtPosition(position).toString()
-                    listPopupView.dismiss()
-                    if(filter)
-                    {
-                        ideaViewModel.filter(selectionButton.text as String)
-                        adapter.notifyDataSetChanged()
-                        //To update the view. Otherwise it will not update until you click on it
-                        showIdeas.smoothScrollToPosition(0)
-                    }
+                selectionButton.text = listPopupView.listView?.getItemAtPosition(position).toString()
+                listPopupView.dismiss()
+                if(filter)
+                {
+                    ideaViewModel.filter(selectionButton.text as String)
+                    adapter.notifyDataSetChanged()
+                    //To update the view. Otherwise it will not update until you click on it
+                    showIdeas.smoothScrollToPosition(0)
                 }
             }
             listPopupView.anchorView = selectionButton
