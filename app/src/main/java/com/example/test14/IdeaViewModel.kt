@@ -55,7 +55,7 @@ class IdeaViewModel(application: Application) : AndroidViewModel(application) {
     fun deleteItem(id: Int)  = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteItem(id);
     }
-    fun deleteCategory(category: String) = viewModelScope.launch(Dispatchers.IO) {
+    fun deleteCategory(category: String){
         repository.deleteCategory(category);
     }
 }

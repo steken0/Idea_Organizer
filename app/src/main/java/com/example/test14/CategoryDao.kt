@@ -22,5 +22,5 @@ interface CategoryDao {
     suspend fun deleteAll()
 
     @Query("DELETE FROM CategoryObjects WHERE category = :category")
-    suspend fun deleteCategory(category: String);
+    fun deleteCategory(category: String);
 }

@@ -30,7 +30,7 @@ interface IdeaDao {
     suspend fun deleteItem(id: Int)
 
     @Query("DELETE FROM IdeaObjects WHERE category = :category")
-    suspend fun deleteCategory(category: String);
+    fun deleteCategory(category: String);
 
     @Update
     suspend fun update(IdeaObject: IdeaObject)

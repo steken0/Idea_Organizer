@@ -48,7 +48,7 @@ class IdeaRepository(private val ideaDao: IdeaDao, private val categoryDao: Cate
     suspend fun deleteItem(id: Int) {
         ideaDao.deleteItem(id)
     }
-    suspend fun deleteCategory(category: String) {
+    fun deleteCategory(category: String) {
         ideaDao.deleteCategory(category);
         categoryDao.deleteCategory(category);
     }
