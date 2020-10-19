@@ -25,10 +25,10 @@ import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var ideaViewModel: IdeaViewModel;
-    var filter = false;
-    lateinit var adapter: IdeaAdapter;
-    private var mediaPlayer: MediaPlayer? = null;
+    lateinit var ideaViewModel: IdeaViewModel
+    var filter = false
+    lateinit var adapter: IdeaAdapter
+    private var mediaPlayer: MediaPlayer? = null
 
     private val listPopupView by lazy { ListPopupWindow(this) }
 
@@ -40,9 +40,11 @@ class MainActivity : AppCompatActivity() {
 
         ideaViewModel = ViewModelProvider(this).get(IdeaViewModel::class.java)
 
+        initialSetup()
+
         createIdeaButton.setOnClickListener {
             val intent = Intent(this, IdeaCreationActivity::class.java);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, 1)
         }
 
         adapter = IdeaAdapter(this)
@@ -59,14 +61,14 @@ class MainActivity : AppCompatActivity() {
             selectionButton.text = spinnerData[0].toString()
             listPopupView.setOnItemClickListener { _, _, position, _ ->
                 if(position < spinnerData.size){
-                    selectionButton.text = spinnerData[position].toString()
+                    selectionButton.text = listPopupView.listView?.getItemAtPosition(position).toString()
                     listPopupView.dismiss()
                     if(filter)
                     {
                         ideaViewModel.filter(selectionButton.text as String)
                         adapter.notifyDataSetChanged()
                         //To update the view. Otherwise it will not update until you click on it
-                        showIdeas.smoothScrollToPosition(0);
+                        showIdeas.smoothScrollToPosition(0)
                     }
                 }
             }
@@ -113,25 +115,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val PREFS_NAME = "MyPrefsFile"
 
-        val settings = getSharedPreferences(PREFS_NAME, 0)
-
-        if (settings.getBoolean("my_first_time", true)) {
-            //the app is being launched for first time, do something
-            val dialogView = LayoutInflater.from(this).inflate(R.layout.helppopup, null)
-            //Build the dialog
-            val dialogBuilder = AlertDialog.Builder(this).setView(dialogView)
-            //View the dialog
-            val alertDialog = dialogBuilder.show()
-
-            dialogView.close_button.setOnClickListener{
-                alertDialog.dismiss()
-            }
-            ideaViewModel.insert(CategoryObject("Random"))
-            // record the fact that the app has been started at least once
-            settings.edit().putBoolean("my_first_time", false).commit()
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -180,5 +164,28 @@ class MainActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
         }
         showIdeas.smoothScrollToPosition(0);
+    }
+
+    fun initialSetup()
+    {
+        val PREFS_NAME = "MyPrefsFile"
+
+        val settings = getSharedPreferences(PREFS_NAME, 0)
+
+        if (settings.getBoolean("my_first_time", true)) {
+            //the app is being launched for first time, do something
+            val dialogView = LayoutInflater.from(this).inflate(R.layout.helppopup, null)
+            //Build the dialog
+            val dialogBuilder = AlertDialog.Builder(this).setView(dialogView)
+            //View the dialog
+            val alertDialog = dialogBuilder.show()
+
+            dialogView.close_button.setOnClickListener{
+                alertDialog.dismiss()
+            }
+            ideaViewModel.insert(CategoryObject("Random"))
+            // record the fact that the app has been started at least once
+            settings.edit().putBoolean("my_first_time", false).apply()
+        }
     }
 }
