@@ -19,7 +19,8 @@
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
-        android:layout_width="370dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="5dp"
         android:layout_height="170dp"
         android:ems="10"
         android:gravity="start|top"
@@ -32,21 +33,22 @@
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imageButton"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:background="@drawable/image_button"
         android:scaleType="fitXY"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toStartOf="@+id/recordPopupButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/recordPopupButton"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:background="@drawable/record_button"
         android:scaleType="fitXY"
-
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
@@ -89,7 +91,8 @@
 
     <Button
         android:id="@+id/create"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Create Idea"
