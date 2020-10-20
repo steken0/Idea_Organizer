@@ -87,11 +87,10 @@ class MainActivity : AppCompatActivity() {
                     }
                     dialogView.deleteButton2.setOnClickListener {
                         ideaViewModel.deleteCategory(selectionButton.text as String);
-                        ideaViewModel.getAllIdeas();
                         selectionButton.text = spinnerData[0].toString()
                         alertDialog.dismiss();
+                        updateRecycleView()
                     }
-                    updateRecycleView()
                 }
                 false
             }
